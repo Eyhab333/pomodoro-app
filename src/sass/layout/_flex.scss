@@ -1,0 +1,12 @@
+.flex-between-centred {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.radio-buttons-flex {
+	display: flex;
+	gap: var(--radio-buttons-spacer, 1.6rem);
+	align-items: center;
+	justify-content: center;
+}

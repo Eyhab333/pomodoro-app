@@ -1,0 +1,32 @@
+@use '../abstracts/mixins';
+
+.mx-auto {
+	margin-inline: auto;
+}
+
+.margin-logo {
+	margin-block-end: 4rem;
+	@include mixins.media-query(medium) {
+		margin-block-end: 4.8rem;
+	}
+}
+
+.margin-state-group {
+	margin-block-end: 4.8rem;
+	@include mixins.media-query(medium) {
+		margin-block-end: 10.8rem;
+	}
+	@include mixins.media-query(large) {
+		margin-block-end: 4.4rem;
+	}
+}
+
+.margin-timer {
+	margin-block-end: 8rem;
+	@include mixins.media-query(medium) {
+		margin-block-end: 14.4rem;
+	}
+	@include mixins.media-query(large) {
+		margin-block-end: 6.4rem;
+	}
+}

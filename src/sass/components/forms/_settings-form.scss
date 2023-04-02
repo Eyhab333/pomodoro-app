@@ -1,0 +1,52 @@
+@use '../../abstracts/mixins';
+
+.settings-form {
+	position: relative;
+	padding-block-end: 3.6rem;
+
+	&__submit-button {
+		position: absolute;
+		left: 50%;
+		bottom: 0;
+		transform: translate(-50%, 50%);
+	}
+
+	/* fieldset related styles */
+	&__fieldset {
+		/* layout */
+		display: flex;
+		flex-direction: column;
+		gap: 1.6rem;
+
+		/* appearance */
+		padding-block: 2.4rem;
+		border: none;
+
+		@include mixins.media-query(medium) {
+			&--horizontal {
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+			}
+		}
+	}
+
+	/* bottom line one every fieldset except the last one */
+	&__fieldset:not(:last-of-type) {
+		border-bottom: 1px solid var(--clr-neutral-300);
+	}
+
+	&__fieldset legend {
+		float: left; /* allows position legend as flex element */
+
+		/* typography */
+		font-size: var(--fz-100);
+		text-align: center;
+		text-transform: uppercase;
+		letter-spacing: var(--ls-200);
+		@include mixins.media-query(medium) {
+			text-align: start;
+		}
+	}
+	/* fieldset related styles end */
+}

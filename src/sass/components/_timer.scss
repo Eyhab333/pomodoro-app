@@ -1,0 +1,87 @@
+@use '../abstracts/mixins';
+
+.timer {
+	/* size controls */
+	--min-width: 30rem;
+	--size-grow-rate: 80vw;
+	--max-width: 41rem;
+	/* shadow controls */
+	--shadow-offset: 5rem;
+	--shadow-blur: 10rem;
+	--colour-shadow-left: hsl(234deg 40% 25%);
+	--colour-shadow-right: hsl(234deg 45% 13%);
+
+	/* sizing */
+	max-width: clamp(var(--min-width), var(--size-grow-rate), var(--max-width));
+	padding: clamp(1.6rem, 3vw, 2.2rem);
+	aspect-ratio: 1 / 1;
+
+	/* timer outer appearance */
+	background-image: linear-gradient(135deg, var(--clr-neutral-900), var(--clr-neutral-600));
+	border-radius: var(--borr-circle, 50%);
+	box-shadow: calc(var(--shadow-offset) * -1) calc(var(--shadow-offset) * -1) var(--shadow-blur)
+			var(--colour-shadow-left),
+		var(--shadow-offset) var(--shadow-offset) var(--shadow-blur) var(--colour-shadow-right);
+
+	&__body {
+		position: relative;
+		padding: clamp(1rem, 1.5vw, 1.3rem);
+
+		/* timer inner appearance */
+		background-color: var(--clr-neutral-800);
+		border-radius: inherit;
+	}
+
+	&__progress-bar {
+		--bar-width: 4;
+		--circumference: 301; //  2 * 48 * PI
+		--progress: 0;
+
+		/* progress line */
+		stroke-width: var(--bar-width);
+		stroke-linecap: round;
+		stroke-dasharray: var(--circumference);
+		stroke-dashoffset: var(--progress, 0);
+		stroke: var(--theme-colour, black);
+
+		/* circle center */
+		fill: none;
+
+		/* rotates 90degrees to the left so starting storke is at the top */
+		transform: rotate(-90deg);
+		transform-origin: center;
+	}
+
+	&__time {
+		margin-block-start: -0.15em;
+		font-family: var(--theme-font);
+		font-size: var(--fz-900);
+		letter-spacing: var(--time-letter-spacing);
+	}
+
+	&__action-button {
+		/* position */
+		position: absolute;
+		bottom: clamp(6.2rem, 17vw, 8.8rem);
+
+		/* typography */
+		font-family: var(--theme-font);
+		font-size: var(--fz-300);
+		text-transform: uppercase;
+		letter-spacing: var(--ls-400);
+		color: var(--clr-neutral-400);
+
+		/* appearance reset */
+		background: none;
+		border: none;
+
+		/* other */
+		cursor: pointer;
+		transition: color 0.35s ease-in-out;
+
+		&:hover,
+		&:focus-visible {
+			color: var(--theme-colour);
+		}
+	}
+}

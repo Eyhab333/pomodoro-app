@@ -1,0 +1,23 @@
+@use '../../abstracts/mixins';
+
+.custom-radio-button {
+	--text-colour: currentColor;
+	--button-bg: initial;
+	position: relative;
+
+	/* hide default radio button */
+	& input[type='radio'] {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 0;
+		height: 0;
+		appearance: none;
+		opacity: 0;
+	}
+
+	& input[type='radio']:checked ~ label {
+		background-color: var(--button-bg-checked);
+		color: var(--text-colour-checked);
+	}
+}

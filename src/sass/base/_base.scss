@@ -1,0 +1,48 @@
+@use '../abstracts/mixins';
+
+body {
+	position: relative;
+	font-family: var(--ff-default, sans-serif);
+	font-weight: var(--fw-700, 700);
+	color: var(--clr-neutral-400);
+	background-color: var(--clr-neutral-700);
+
+	/* themes */
+	&[data-theme='red'] {
+		--theme-colour: var(--clr-theme-red);
+	}
+
+	&[data-theme='cyan'] {
+		--theme-colour: var(--clr-theme-cyan);
+	}
+
+	&[data-theme='violet'] {
+		--theme-colour: var(--clr-theme-violet);
+	}
+
+	/* fonts */
+	&[data-font='sans-serif'] {
+		--theme-font: var(--ff-sans-serif);
+		--time-letter-spacing: var(--ls-sans-serif);
+	}
+
+	&[data-font='serif'] {
+		--theme-font: var(--ff-serif);
+		--time-letter-spacing: var(--ls-serif);
+	}
+
+	&[data-font='monospace'] {
+		--theme-font: var(--ff-monospace);
+		--time-letter-spacing: var(--ls-monospace);
+	}
+}
+
+main {
+	padding-block: 3.2rem;
+	@include mixins.media-query(medium) {
+		padding-block-start: 8rem;
+	}
+	@include mixins.media-query(large) {
+		padding-block-start: 5.4rem;
+	}
+}

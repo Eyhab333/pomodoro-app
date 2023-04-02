@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./dist/assets/favicon-32x32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&family=Roboto+Slab:wght@400;700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="./dist/css/main.min.css" />
+
+  <title>Frontend Mentor | Pomodoro app</title>
+</head>
+
+<body data-theme="red" data-font="sans-serif">
+  <main>
+    <div class="container">
+      <!-- logo -->
+      <h1 class="margin-logo">
+        <img src="./dist/assets/logo.svg" alt="pomodoro" class="mx-auto" />
+      </h1>
+
+      <!-- state control group -->
+      <form id="state-form" class="state-form | mx-auto margin-state-group">
+        <div class="state-radio-button">
+          <input type="radio" name="time-state" value="pomodoro" id="pomodoro-time-state" checked />
+          <label for="pomodoro-time-state" class="state-radio-button__label">
+            pomodoro
+          </label>
+        </div>
+        <div class="state-radio-button">
+          <input type="radio" name="time-state" value="short_break" id="short-break-time-state" />
+          <label for="short-break-time-state" class="state-radio-button__label">
+            short break
+          </label>
+        </div>
+        <div class="state-radio-button">
+          <input type="radio" name="time-state" value="long_break" id="long-break-time-state" />
+          <label for="long-break-time-state" class="state-radio-button__label">
+            long break
+          </label>
+        </div>
+      </form>
+
+      <!-- pomodoro timer -->
+      <div class="timer | mx-auto margin-timer">
+        <div class="timer__body | one-cell-grid">
+          <!-- progress bar -->
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 100 100">
+            <circle cx="50" cy="50" r="48" id="progress-bar" class="timer__progress-bar"></circle>
+          </svg>
+
+          <!-- time -->
+          <p role="timer" id="timer-time" class="timer__time">00:00</p>
+
+          <!-- action button -->
+          <button id="timer-button" class="timer__action-button">
+            start
+          </button>
+        </div>
+      </div>
+      <!-- pomodoro timer end -->
+
+      <!-- settings button -->
+      <button aria-label="Settings" id="settings-button" class="icon-button | mx-auto">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+          <path fill="#D7E0FF"
+            d="M26.965 17.682l-2.927-2.317c.055-.448.097-.903.097-1.365 0-.462-.042-.917-.097-1.365l2.934-2.317a.702.702 0 00.167-.896l-2.775-4.851a.683.683 0 00-.847-.301l-3.454 1.407a10.506 10.506 0 00-2.345-1.379l-.52-3.71A.716.716 0 0016.503 0h-5.55a.703.703 0 00-.687.588l-.52 3.71c-.847.357-1.63.819-2.345 1.379L3.947 4.27a.691.691 0 00-.847.301L.325 9.422a.705.705 0 00.167.896l2.927 2.317c-.055.448-.097.903-.097 1.365 0 .462.042.917.097 1.365L.492 17.682a.702.702 0 00-.167.896L3.1 23.429a.683.683 0 00.847.301L7.4 22.323a10.506 10.506 0 002.345 1.379l.52 3.71c.056.329.34.588.687.588h5.55a.703.703 0 00.687-.588l.52-3.71c.847-.357 1.631-.819 2.346-1.379l3.454 1.407c.313.119.673 0 .847-.301l2.775-4.851a.705.705 0 00-.167-.896zM13.73 18.9c-2.685 0-4.857-2.191-4.857-4.9 0-2.709 2.172-4.9 4.857-4.9 2.684 0 4.856 2.191 4.856 4.9 0 2.71-2.172 4.9-4.856 4.9z"
+            opacity="var(--icon-opacity, .5)" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- settings modal start -->
+    <div aria-modal="true" aria-labelledby="settings-modal-heading" role="dialog" class="settings-modal"
+      id="settings-modal" data-open="false">
+      <!-- modal header -->
+      <div class="settings-modal__header">
+        <div class="flex-between-centred">
+          <h2 id="settings-modal-heading" class="settings-modal__heading">
+            Settings
+          </h2>
+          <button id="close-settings-modal-button" class="icon-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14">
+              <path fill="#1E213F" fill-rule="evenodd"
+                d="M11.95.636l1.414 1.414L8.414 7l4.95 4.95-1.414 1.414L7 8.414l-4.95 4.95L.636 11.95 5.586 7 .636 2.05 2.05.636 7 5.586l4.95-4.95z"
+                opacity="var(--icon-opacity, .5)" />
+            </svg>
+            <span class="visually-hidden">Close settings modal</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- modal body -->
+      <div class="settings-modal__body">
+        <!-- settings form -->
+        <form id="settings-form" class="settings-form">
+          <!-- times settings start -->
+          <fieldset class="settings-form__fieldset">
+            <legend>Time (minutes)</legend>
+            <div class="times-input-grid">
+              <div class="input-group">
+                <label for="pomodoro-time" class="input-group__label">pomodoro</label>
+                <input type="number" min="1" max="99" step="1" value="25" name="pomodoro" id="pomodoro-time"
+                  class="form-input" />
+              </div>
+              <div class="input-group">
+                <label for="short-break-time" class="input-group__label">short break</label>
+                <input type="number" min="1" max="99" step="1" value="5" name="short-break" id="short-break-time"
+                  class="form-input" />
+              </div>
+              <div class="input-group">
+                <label for="long-break-time" class="input-group__label">long break</label>
+                <input type="number" min="1" max="99" step="1" value="15" name="long-break" id="long-break-time"
+                  class="form-input" />
+              </div>
+            </div>
+          </fieldset>
+          <!-- times settings end -->
+
+          <!-- font settings start -->
+          <fieldset class="settings-form__fieldset settings-form__fieldset--horizontal">
+            <legend>Font</legend>
+            <div class="radio-buttons-flex">
+              <div class="font-radio-button font-radio-button--sans-serif">
+                <input type="radio" name="font" value="sans-serif" id="sans-serif-font" checked />
+                <label for="sans-serif-font" class="font-radio-button__label">
+                  <span aria-hidden="true">Aa</span>
+                  <span class="visually-hidden">Kumbh Sans</span>
+                </label>
+              </div>
+              <div class="font-radio-button font-radio-button--serif">
+                <input type="radio" name="font" value="serif" id="serif-font" />
+                <label for="serif-font" class="font-radio-button__label">
+                  <span aria-hidden="true">Aa</span>
+                  <span class="visually-hidden">Roboto Slab</span>
+                </label>
+              </div>
+              <div class="font-radio-button font-radio-button--monospace">
+                <input type="radio" name="font" value="monospace" id="monospace-font" />
+                <label for="monospace-font" class="font-radio-button__label">
+                  <span aria-hidden="true">Aa</span>
+                  <span class="visually-hidden">Space Mono</span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+          <!-- font settings end -->
+
+          <!-- colour settings start -->
+          <fieldset class="settings-form__fieldset settings-form__fieldset--horizontal">
+            <legend>Color</legend>
+            <div class="radio-buttons-flex">
+              <div class="colour-radio-button colour-radio-button--red">
+                <input type="radio" name="colour" value="red" id="red-theme-colour" checked />
+                <label for="red-theme-colour" class="colour-radio-button__label">
+                  <span class="visually-hidden">Bright red</span>
+                </label>
+              </div>
+              <div class="colour-radio-button colour-radio-button--cyan">
+                <input type="radio" name="colour" value="cyan" id="cyan-theme-colour" />
+                <label for="cyan-theme-colour" class="colour-radio-button__label">
+                  <span class="visually-hidden">Cyan</span>
+                </label>
+              </div>
+              <div class="colour-radio-button colour-radio-button--violet">
+                <input type="radio" name="colour" value="violet" id="violet-theme-colour" />
+                <label for="violet-theme-colour" class="colour-radio-button__label">
+                  <span class="visually-hidden">Violet</span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+          <!-- colour settings end -->
+
+          <button type="submit" class="button settings-form__submit-button">
+            Apply
+          </button>
+        </form>
+      </div>
+    </div>
+    <div aria-hidden="true" class="dropshadow"></div>
+    <!-- settings modal end -->
+  </main>
+
+  <script src="./dist/js/main.min.js" defer></script>
+</body>
+
+</html>

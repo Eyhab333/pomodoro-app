@@ -1,0 +1,11 @@
+@use '../../abstracts/mixins';
+
+.state-form {
+	position: relative; // to hide timer shadows under
+	display: flex;
+	justify-content: center;
+	max-width: max-content;
+	padding: 0.8rem;
+	background-color: var(--clr-neutral-800);
+	border-radius: var(--borr-pill, 2rem);
+}
